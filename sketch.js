@@ -1,667 +1,253 @@
-let song; 
+//GLOBAL VARIABLES 
 
+let mirrored;
+
+let tree;
+let tree1; 
+let tree2;
+let tree3;
+let eye1;
+let eye6;
 let ghostGirl;
-let eyesLie1;
-let eyesLie2;
-let eyesLie3;
-let eyesLie4;
-let eyesLie5;
-let eyesLie6;
-let eyesLie7;
-let eyesLie8;
-let eyesLie9;
+let ghostGirl2;
+let ghostGirl3;
+let daCat;
+let daCat1;
 
-let dead;
+let catLine;
+let treeLine;
+let ghostLine;
 
-let wired_6;
-let wired_5;
-let wired_4;
-let wired_3;
-let wired_2;
-let wired_1;
-let wired1;
-let wired2;
-let wired3;
-let wired4;
-let wired5;
-let wired6;
-let wired7;
-let wired8;
-let wired9;
-let wired10;
-let wired11;
-let wired12;
-let wired13;
-let wired14;
+let fye;
+let fye2;
 
+let spread;
 
-let daCAT;
+let theFont;
+let song;
 
-pixelLevel=5;
-pixelLvl=10;
-pixelLvl2=8;
+let rains= [];
 
-function preload(){
+let w;
+let h;
 
-song= loadSound('media/nightOwlEdit.wav'); //SONGNNGNNGNGNNGNNG
+let pixelLevel= 7;
 
-dead= loadImage('media/dead.JPG');
-daCAT = loadImage('media/daCAT.png');
-eyes1= loadImage('media/eyes1.png');	
-ghostGirl= loadImage('media/ghostGirl.png');
+function preload(){ // function preloading--> loading all media items before set up 
+
+//song= loadSound('nightOwlEdit.wav')
 	
-eyesLie1= loadImage('media/eyeslie1.png');
-eyesLie2= loadImage('media/eyeslie2.png');
-eyesLie3= loadImage('media/eyeslie3.png');
-eyesLie4= loadImage('media/eyeslie4.png');
-eyesLie5= loadImage('media/eyeslie5.png');
-eyesLie6= loadImage('media/eyeslie6.png');
-eyesLie7= loadImage('media/eyeslie7.png');
-eyesLie8= loadImage('media/eyeslie8.png');
-eyesLie9= loadImage('media/eyeslie9.png');
+theFont= loadFont('goudyMedieval.ttf');
+
+mirrored= loadImage('mirrored.png');
+fye2= loadImage('fye2.png');
+fye= loadImage('fye.png');
 	
-wired_6= loadImage('media/wired-6.png');
-wired_5= loadImage('media/wired-5.png');
-wired_4= loadImage('media/wired-4.png');
-wired_3= loadImage('media/wired-3.png');
-wired_2= loadImage('media/wired-2.png');
-wired_1= loadImage('media/wired-1.png');
-wired1 = loadImage('media/wired1.png');
-wired2 = loadImage('media/wired2.png');
-wired3 = loadImage('media/wired3.png');
-wired4 = loadImage('media/wired4.png');
-wired5 = loadImage('media/wired5.png');
-wired6 = loadImage('media/wired6.png');
-wired7 = loadImage('media/wired7.png');
-wired8 = loadImage('media/wired8.png');
-wired9 = loadImage('media/wired9.png');
-wired10 = loadImage('media/wired10.png');
-wired11= loadImage('media/wired11.png');
-wired12= loadImage('media/wired12.png');
-wired13= loadImage('media/wired13.png');
-wired14= loadImage('media/wired14.png');
+tree= loadImage('BladeRunnerTree.png');
+tree1= loadImage('BladeRunnerTree1.png');
+tree2= loadImage('BladeRunnerTree2.png');
+tree3= loadImage('BladeRunnerTree3.png');
+ghostGirl= loadImage('ghostGirl.png');
+ghostGirl2= loadImage('ghostGirl2.png');
+ghostGirl3= loadImage('ghostGirl3.png');
+daCat= loadImage('daCAT.png');
+daCat1= loadImage('daCAT1.png');
+
+ghostLine= loadImage('ghostLine.png');
+catLine= loadImage('catLine.png');
+treeLine= loadImage('treeLine.png');
+
+
+spread= loadImage('spread.JPG');
+eye1= loadImage('eye1.png');
+eye6= loadImage('eye6png.png');
 	
 }
 
-function setup() {
-	createCanvas(windowWidth,windowHeight);
-	background(255);
+function setup() { 					// SETUP function 
+	createCanvas(windowWidth, windowHeight);
+	imageMode(CENTER);
+
+for(let i=0; i<1000; i++){ // conditions for the rain instance 
+      let x= random(width);
+      let y= random(height);
+      let r= random(3);
+    let rp = new Rain(x,y,r); // creating a new instance of the Rain class
+    rains.push(rp);   
+  }   
 	
-}
-
-function draw() {
+	w= 1;
+	h=1;
 	
-	 song.rate(mouseX/500);
-	song.play(); // SONGGFGGGGGEGFEWJFYIWEGFIWEGFIUGEIUFHIWE	
-	
- if(frameCount < 25){   // scene one ends at 25 frames
-    scene1(); 
- } else if (frameCount < 100){  // scene 2 ends at 50 frames
-   scene2();
- } else if (frameCount<125){ // scene 3 ends at 75 frames
-  scene3();
- }
- else if( frameCount<150){ // scene 4 ends at 100 frames
-  scene4();
- }
- else if( frameCount<160){// scene 5 ends at 125 frames
-  scene5();
- }
- else if( frameCount<170){// scene 6 ends at 150 frames
-  scene6();
- }
- else if( frameCount<180){// scene 7 ends at 175 frames
-  scene7();
- }
-else if (frameCount<190){
-	scene9();
-}
-else if (frameCount<200){
-	scene10();
-}
-else if (frameCount<205){
-	scene11();
-}
-	else if (frameCount<210){
-	scene12();
-}
-	else if (frameCount<215){
-	scene13();
-}
-	else if (frameCount<225){
-	scene14();
-}
-	else if (frameCount<235){
-	scene15();
-}
-	else if (frameCount<245){
-	scene16();
-}
-	else if (frameCount<275){
-	scene17();
-}
-	else if (frameCount<285){
-	scene18();
-}
-	else if (frameCount<320){
-	scene19();
-}
-	else if (frameCount<450){
-	scene20();	
-}
+}// end of setup function 
 
-}
-
-function scene1(){
-	pixelDensity(1); 
-	image(wired_6,0,0,windowWidth,windowHeight);
-
-	loadPixels(); // pixelation in the nation 
-	 	for (let x = 0; x < width; x += pixelLvl) {
-  	for (let y = 0; y < height; y += pixelLvl) {
-      
-			// finding the pixel information of the image 
-      let i = (x + y * width) * 4;
-
-      let r = pixels[i + 0]; 
-      let g = pixels[i + 1];
-      let b = pixels[i + 2];
-      let a = pixels[i + 3];
-
-      fill(r, g, b, a);
-			noStroke();
-    	let o= random(-50,50);
-     ellipse(x+o, y+o, pixelLvl);
-}
-		}
-
-}
-
-function scene2(){
-	pixelDensity(1); 
-	image(wired_5,0,0,windowWidth,windowHeight);
-	
-	loadPixels(); // pixelation in the nation 
-	 	for (let x = 0; x < width; x += pixelLvl) {
-  	for (let y = 0; y < height; y += pixelLvl) {
-      
-			// finding the pixel information of the image 
-      let i = (x + y * width) * 4;
-
-      let r = pixels[i + 0]; 
-      let g = pixels[i + 1];
-      let b = pixels[i + 2];
-      let a = pixels[i + 3];
-
-      fill(r, g, b, a);
-			noStroke();
-     let o= random(-40,40);
-      ellipse(x+o, y+o, pixelLvl);
-}
-		}
-
-}
-
-function scene3(){
-	pixelDensity(1); 
-	image(wired_4,0,0,windowWidth,windowHeight);
-	image(daCAT,windowWidth/2+90, windowHeight/2+90);
-	image(ghostGirl,windowWidth/3, windowHeight/2+400);
-	
-	loadPixels(); // pixelation in the nation 
-	 	for (let x = 0; x < width; x += pixelLvl2) {
-  	for (let y = 0; y < height; y += pixelLvl2) {
-      
-			// finding the pixel information of the image 
-      let i = (x + y * width) * 4;
-
-      let r = pixels[i + 0]; 
-      let g = pixels[i + 1];
-      let b = pixels[i + 2];
-      let a = pixels[i + 3];
-
-      fill(r, g, b, a);
-			noStroke();
-     let o= random(-30,30);
-      ellipse(x+o, y+o, pixelLvl);
-}
-		}
-
-}
-
-function scene4(){
-	pixelDensity(1); 
-	image(wired_3,0,0,windowWidth,windowHeight);
-	image(daCAT,windowWidth/2+30, windowHeight/2+30);
-	image(ghostGirl,windowWidth/3, windowHeight/2+350);
-
-	loadPixels(); // pixelation in the nation 
-	 	for (let x = 0; x < width; x += pixelLvl2) {
-  	for (let y = 0; y < height; y += pixelLvl2) {
-      
-			// finding the pixel information of the image 
-      let i = (x + y * width) * 4;
-
-      let r = pixels[i + 0]; 
-      let g = pixels[i + 1];
-      let b = pixels[i + 2];
-      let a = pixels[i + 3];
-
-      fill(r, g, b, a);
-			noStroke();
-  let o= random(-15,15);
-      ellipse(x+o, y+o, pixelLvl);
-}
-		}
-	
-}
-
-function scene5(){
-	pixelDensity(1); 
-	image(wired_2,0,0,windowWidth,windowHeight);
-image(daCAT,windowWidth/2, windowHeight/2);
-image(ghostGirl,windowWidth/3, windowHeight/2+320);
-	
-	loadPixels(); // pixelation in the nation 
-	 	for (let x = 0; x < width; x += pixelLevel) {
-  	for (let y = 0; y < height; y += pixelLevel) {
-      
-			// finding the pixel information of the image 
-      let i = (x + y * width) * 4;
-
-      let r = pixels[i + 0]; 
-      let g = pixels[i + 1];
-      let b = pixels[i + 2];
-      let a = pixels[i + 3];
-
-      fill(r, g, b, a);
-			noStroke();
-     let o= random(-8,8);
-      ellipse(x+o, y+o, pixelLvl2);
-}
-		}
-
-}
-
-function scene6(){
-	pixelDensity(1); 
-	image(wired_1,0,0,windowWidth,windowHeight);
-image(daCAT,windowWidth/2-50, windowHeight/2-50);
-image(ghostGirl,windowWidth/3, windowHeight/2+275);
-	
-	loadPixels(); // pixelation in the nation 
-	 	for (let x = 0; x < width; x += pixelLevel) {
-  	for (let y = 0; y < height; y += pixelLevel) {
-      
-			// finding the pixel information of the image 
-      let i = (x + y * width) * 4;
-
-      let r = pixels[i + 0]; 
-      let g = pixels[i + 1];
-      let b = pixels[i + 2];
-      let a = pixels[i + 3];
-
-      fill(r, g, b, a);
-			noStroke();
-    let o= random(-3,3);
-      ellipse(x+o, y+o, pixelLvl2);
-}
-		}
-}
-
-function scene7(){
-	pixelDensity(1); 
-	image(wired1,0,0,windowWidth,windowHeight);
-image(daCAT,windowWidth/2-60, windowHeight/2-60);	
-image(ghostGirl,windowWidth/3, windowHeight/2+200);
-
-	loadPixels(); // pixelation in the nation 
-	 	for (let x = 0; x < width; x += pixelLevel) {
-  	for (let y = 0; y < height; y += pixelLevel) {
-      
-			// finding the pixel information of the image 
-      let i = (x + y * width) * 4;
-
-      let r = pixels[i + 0]; 
-      let g = pixels[i + 1];
-      let b = pixels[i + 2];
-      let a = pixels[i + 3];
-
-      fill(r, g, b, a);
-			noStroke();
-      let o= random(-2,2);
-       ellipse(x+o, y+o, pixelLevel);
-}
-		}
-}
-
-function scene8(){
-	pixelDensity(1); 
-	image(wired2,0,0,windowWidth,windowHeight);
-image(daCAT,windowWidth/2-40, windowHeight/2-40);
-image(ghostGirl,windowWidth/3, windowHeight/2+150);
+function draw() {// start of the draw function 
 	
 	
+// song.rate(mouseX/500);
+	//song.play();
+background(0);
+sceneStart();
 
-	loadPixels(); // pixelation in the nation 
-	 	for (let x = 0; x < width; x += pixelLevel) {
-  	for (let y = 0; y < height; y += pixelLevel) {
-      
-			// finding the pixel information of the image 
-      let i = (x + y * width) * 4;
-
-      let r = pixels[i + 0]; 
-      let g = pixels[i + 1];
-      let b = pixels[i + 2];
-      let a = pixels[i + 3];
-
-      fill(r, g, b, a);
-			noStroke();
-      let o= random(-5,5);
-       ellipse(x+o, y+o, pixelLevel);
-}
-		}
 }
 
-function scene9(){
-	pixelDensity(1); 
-	image(wired3,0,0,windowWidth,windowHeight);
-	image(daCAT,windowWidth/2, windowHeight/2);
-	image(ghostGirl,windowWidth/3, windowHeight/2+100);
+
+
+function sceneStart(){ // function start scene (first scene)
 	
-	loadPixels(); // pixelation in the nation 
-	 	for (let x = 0; x < width; x += pixelLevel) {
-  	for (let y = 0; y < height; y += pixelLevel) {
-      
-			// finding the pixel information of the image 
-      let i = (x + y * width) * 4;
-
-      let r = pixels[i + 0]; 
-      let g = pixels[i + 1];
-      let b = pixels[i + 2];
-      let a = pixels[i + 3];
-
-      fill(r, g, b, a);
-			noStroke();
-     let o= random(-3,3);
-       ellipse(x+o, y+o, pixelLevel);
-}
-		}
-}
-
-function scene10(){
-	pixelDensity(1); 
-	image(wired4,0,0,windowWidth,windowHeight);
-	image(daCAT,windowWidth/2+20, windowHeight/2+20);
-	image(ghostGirl,windowWidth/3, windowHeight/2+20);
-
-	loadPixels(); // pixelation in the nation 
-	 	for (let x = 0; x < width; x += pixelLevel) {
-  	for (let y = 0; y < height; y += pixelLevel) {
-      
-			// finding the pixel information of the image 
-      let i = (x + y * width) * 4;
-
-      let r = pixels[i + 0]; 
-      let g = pixels[i + 1];
-      let b = pixels[i + 2];
-      let a = pixels[i + 3];
-
-      fill(r, g, b, a);
-			noStroke();
-      let o= random(-5,5);
-       ellipse(x+o, y+o, pixelLevel);
-}
-		}
-}
-
-function scene11(){
-	pixelDensity(1); 
-	image(wired5,0,0,windowWidth,windowHeight);
-	image(daCAT,windowWidth+50, windowHeight+50);
-	image(ghostGirl,windowWidth/3, windowHeight/2);
+let x= windowWidth/2;
+let y= windowHeight/2;
 	
-	loadPixels(); // pixelation in the nation 
-	 	for (let x = 0; x < width; x += pixelLevel) {
-  	for (let y = 0; y < height; y += pixelLevel) {
-      
-			// finding the pixel information of the image 
-      let i = (x + y * width) * 4;
+ww=windowWidth/2;
+hh= windowHeight;
+let f = random(-5,5);
 
-      let r = pixels[i + 0]; 
-      let g = pixels[i + 1];
-      let b = pixels[i + 2];
-      let a = pixels[i + 3];
-
-      fill(r, g, b, a);
-			noStroke();
-      let o= random(-10,10);
-      ellipse(x+o, y+o, pixelLevel);
-}
-		}
-}
-
-function scene12(){
-	pixelDensity(1); 
-	image(wired6,0,0,windowWidth,windowHeight);
-image(daCAT,windowWidth/2+90, windowHeight/2+90);
-	image(ghostGirl,windowWidth/3, windowHeight/2-20);
-
-	loadPixels(); // pixelation in the nation 
-	 	for (let x = 0; x < width; x += pixelLevel) {
-  	for (let y = 0; y < height; y += pixelLevel) {
-      
-			// finding the pixel information of the image 
-      let i = (x + y * width) * 4;
-
-      let r = pixels[i + 0]; 
-      let g = pixels[i + 1];
-      let b = pixels[i + 2];
-      let a = pixels[i + 3];
-
-      fill(r, g, b, a);
-			noStroke();
-      let o= random(-20,20);
-       ellipse(x+o, y+o, pixelLevel);
-		}
-		}
-
-
-}
-
-function scene13(){
-pixelDensity(1); 
-	image(wired7,0,0,windowWidth,windowHeight);
-	image(daCAT,windowWidth/2+160, windowHeight/2+160);
-	image(ghostGirl,windowWidth/3, windowHeight/2-40);
+let p= random(10,100);
+tint(255,p);
+image(ghostLine,x+600,y,ww/3+f,hh/2+f);
+image(catLine,x-700, y, ww/2+f,hh/2+f);
+image(treeLine,x+80,y, ww+f,hh+f);
 	
-			loadPixels(); // pixelation in the nation 
-	 	for (let x = 0; x < width; x += pixelLevel) {
-  	for (let y = 0; y < height; y += pixelLevel) {
-      
-			// finding the pixel information of the image 
-      let i = (x + y * width) * 4;
-
-      let r = pixels[i + 0]; 
-      let g = pixels[i + 1];
-      let b = pixels[i + 2];
-      let a = pixels[i + 3];
-
-      fill(r, g, b, a);
-			noStroke();
-      let o= random(-40,40);
-       ellipse(x+o, y+o, pixelLevel);
-		}
-		}
-}
-
-function scene14(){
-pixelDensity(1); 
-	image(wired8,0,0,windowWidth,windowHeight);
-	image(daCAT,windowWidth/2+200, windowHeight/2+200);
-	image(ghostGirl,windowWidth/3, windowHeight/2-60);
-
-		loadPixels(); // pixelation in the nation 
-	 	for (let x = 0; x < width; x += pixelLevel) {
-  	for (let y = 0; y < height; y += pixelLevel) {
-      
-			// finding the pixel information of the image 
-      let i = (x + y * width) * 4;
-
-      let r = pixels[i + 0]; 
-      let g = pixels[i + 1];
-      let b = pixels[i + 2];
-      let a = pixels[i + 3];
-
-      fill(r, g, b, a);
-			noStroke();
-      let o= random(-60,60);
-       ellipse(x+o, y+o, pixelLevel);
-		}
-		}
 	
-}
-
-function scene15(){
-pixelDensity(1); 	
-	image(wired9,0,0,windowWidth,windowHeight);
+tint(255,225);
 	
-	image(daCAT,windowWidth/2+220, windowHeight/2-90+220);
-	image(ghostGirl,windowWidth/3, windowHeight/2-80);
+if (mouseIsPressed === true) { // start of the mouseIsPressed
+tint(255,160);	
+w= w+ random(-10,15);
+h= h+ random(-10,15);
 
-	loadPixels(); // pixelation in the nation 
-	 	for (let x = 0; x < width; x += pixelLevel) {
-  	for (let y = 0; y < height; y += pixelLevel) {
-      
-			// finding the pixel information of the image 
-      let i = (x + y * width) * 4;
+image(tree,x+80,y, w,h);
+image(ghostGirl2,x+600,y,w/3,h/2);
+image(daCat1, x-700, y, w/1.7,h/1.9);
 
-      let r = pixels[i + 0]; 
-      let g = pixels[i + 1];
-      let b = pixels[i + 2];
-      let a = pixels[i + 3];
-
-      fill(r, g, b, a);
-			noStroke();
-      let o= random(-100,100);
-       ellipse(x+o, y+o, pixelLevel);
-		}
-		}
 	
-}
-
-function scene16(){
-	pixelDensity(1); 
-	image(wired10,0,0,windowWidth,windowHeight);
+	if (w>windowWidth/2){
+textSize(50);  // text size 
+  noFill();
+  textAlign(CENTER); // text alignmnet in the center
+  textFont(theFont);// using the 'theFont' text font
 	
-	image(daCAT,windowWidth/2+300, windowHeight/2+300);
-	image(ghostGirl,windowWidth/3, windowHeight/2-110);
-	
-		loadPixels(); // pixelation in the nation 
-	 	for (let x = 0; x < width; x += pixelLevel) {
-  	for (let y = 0; y < height; y += pixelLevel) {
-      
-			// finding the pixel information of the image 
-      let i = (x + y * width) * 4;
-
-      let r = pixels[i + 0]; 
-      let g = pixels[i + 1];
-      let b = pixels[i + 2];
-      let a = pixels[i + 3];
-
-      fill(r, g, b, a);
-			noStroke();
-      let o= random(-200,200);
-       ellipse(x+o, y+o, pixelLevel);
-		}
-		}
-	
-}
-
-
-function scene17(){
-pixelDensity(1); 
-	image(wired11,0,0,windowWidth,windowHeight);
-	image(daCAT,windowWidth/2+320, windowHeight/2+320);
-	image(ghostGirl,windowWidth/3, windowHeight/2-140);
-	
-		loadPixels(); // pixelation in the nation 
-	 	for (let x = 0; x < width; x += pixelLevel) {
-  	for (let y = 0; y < height; y += pixelLevel) {
-      
-			// finding the pixel information of the image 
-      let i = (x + y * width) * 4;
-
-      let r = pixels[i + 0]; 
-      let g = pixels[i + 1];
-      let b = pixels[i + 2];
-      let a = pixels[i + 3];
-
-      fill(r, g, b, a);
-			noStroke();
-      let o= random(-300,300);
-       ellipse(x+o, y+o, pixelLevel);
-		}
-		}
-
-}
-
-function scene18(){
-	pixelDensity(1); 
-	
-	image(wired12,0,0,windowWidth,windowHeight);
-	image(daCAT,windowWidth/2+350, windowHeight/2+350);
-	image(ghostGirl,windowWidth/3, windowHeight/2-150);
-
-		loadPixels(); // pixelation in the nation 
-	 	for (let x = 0; x < width; x += pixelLevel) {
-  	for (let y = 0; y < height; y += pixelLevel) {
-      
-			// finding the pixel information of the image 
-      let i = (x + y * width) * 4;
-
-      let r = pixels[i + 0]; 
-      let g = pixels[i + 1];
-      let b = pixels[i + 2];
-      let a = pixels[i + 3];
-
-      fill(r, g, b, a);
-			noStroke();
-      let o= random(-500,500);
-       ellipse(x+o, y+o, pixelLevel);
-		}
-		}
-	
+	let p= random(10,120);	
+stroke(255,p); // stroke= white
+  strokeWeight(1); // strokeWeight=1
+  text("'release'",x,y/4 );
+		
 }
 	
-function scene19(){
-		image(wired13,0,0,windowWidth,windowHeight);
-	image(ghostGirl,windowWidth/3, windowHeight/2-150);
+
+} // end of mouseIsPress
 	
-		loadPixels(); // pixelation in the nation 
-	 	for (let x = 0; x < width; x += pixelLevel) {
-  	for (let y = 0; y < height; y += pixelLevel) {
-      
-			// finding the pixel information of the image 
-      let i = (x + y * width) * 4;
-
-      let r = pixels[i + 0]; 
-      let g = pixels[i + 1];
-      let b = pixels[i + 2];
-      let a = pixels[i + 3];
-
-      fill(r, g, b, a);
-			noStroke();
-      let o= random(-800,800);
-       ellipse(x+o, y+o, pixelLevel);
-		}
-		}
-}
-
-function scene20(){
-	image(dead,0,0,windowWidth,windowHeight);
 	imageMode(CENTER);
 	
+	eye();
+
+for(var i=0; i<rains.length;i++){ // the rain 
+  rains[i].exist(); // the functions of rain
+  rains[i].fall();
+  }
+
+if (w>windowWidth/2){// if the width of the image exceeds half the width of the window, the next scene is overlayed (sceneCharacters)
+sceneCharacters();
+}
+}// end of Start screen 
+
+
+
+function sceneCharacters(){ // start of character display scene 
+ww=windowWidth/2;
+hh= windowHeight;
+	
+let x= windowWidth/2;
+let y= windowHeight/2;
+
+image(daCat1, x-700, y, ww/2,hh/2);
+image(tree2,x+80,y, ww,hh);
+image(ghostGirl3,x+600,y,ww/3,hh/2);
+
+
+textSize(90);  // text size 
+  noFill();
+  textAlign(CENTER); // text alignmnet in the center
+  textFont(theFont);// using the 'theFont' text font
+	
+	let p= random(10,120);	
+stroke(255,p); // stroke= white
+  strokeWeight(2); // strokeWeight=1
+  text("'1'",x-685,y-300 );
+	text("'2'",x+80,y-300 );
+	text("'3'",x+590,y-300);
+
+	
+	
+	
+eye();
+	
+if (key === '1'){
+	sceneCat();
+	
+}
+	else if (key=== '2'){
+	sceneTree();
+	}
+else if (key=== '3'){
+	
+	sceneGhost();
+}
+}
+
+
+function sceneCat(){
+pixelDensity(1); 
+	
+	imageMode(CORNER);
+	image(spread,0,0,windowWidth,windowHeight);
+	
+	imageMode(CENTER);
+	
+let ww= width*3/4+ random(-15,10);
+let hh= height*3/4+random(-15,10);
+	
+image(daCat1, 40, windowHeight*3/4,ww, hh );
+
+	for(let i=0; i<1000; i++){ // conditions for the rain instance 
+      let x= random(width);
+      let y= random(height);
+      let r= random(3);
+    let rp = new Rain(x,y,r); // creating a new instance of the Rain class
+    rains.push(rp);   
+  } 
+	
+loadPixels(); // pixelation in the nation 
+	 	for (let x = 0; x < width; x += pixelLevel) {
+  	for (let y = 0; y < height; y += pixelLevel) {
+      
+			// finding the pixel information of the image 
+      let i = (x + y * width) * 4;
+
+      let r = pixels[i + 0]; 
+      let g = pixels[i + 1];
+      let b = pixels[i + 2];
+      let a = pixels[i + 3];
+
+      fill(r, g, b, a);
+			noStroke();
+			
+			let o= random(-13,13);
+      ellipse(x+o, y+o, pixelLevel);
+		}
+		}
+
+}
+
+
+function sceneTree(){
+pixelDensity(1); 
+	imageMode(CORNER);
+	image(fye, 0,0,windowWidth,windowHeight);
+	imageMode(CENTER);
+	
+		image(tree, windowWidth/2+80,windowHeight/2, width/1.2, height/1.2);
+	
 	loadPixels(); // pixelation in the nation 
 	 	for (let x = 0; x < width; x += pixelLevel) {
   	for (let y = 0; y < height; y += pixelLevel) {
@@ -676,10 +262,85 @@ function scene20(){
 
       fill(r, g, b, a);
 			noStroke();
-      let o= random(-14,14);
-      ellipse(x+o, y+o, pixelLevel); // move pixels by -14,14
-    }
-  }	
-	imageMode(CORNER);
+			
+			let o= random(-13,13);
+      ellipse(x+o, y+o, pixelLevel);
+		}
+		}
 	
+}
+
+
+function sceneGhost(){
+	pixelDensity(1); 
+	imageMode(CORNER);
+	image(mirrored, 0,0,windowWidth,windowHeight);
+	imageMode(CENTER);
+	
+	let o= random(-10,5);
+	
+	image(ghostGirl3, windowWidth/2,windowHeight/2, width/6+o, height/2+o);
+	
+	loadPixels(); // pixelation in the nation 
+	 	for (let x = 0; x < width; x += pixelLevel) {
+  	for (let y = 0; y < height; y += pixelLevel) {
+      
+			// finding the pixel information of the image 
+      let i = (x + y * width) * 4;
+
+      let r = pixels[i + 0]; 
+      let g = pixels[i + 1];
+      let b = pixels[i + 2];
+      let a = pixels[i + 3];
+
+      fill(r, g, b, a);
+			noStroke();
+			
+			let o= random(-3,3);
+    ellipse(x+o, y+o, pixelLevel);
+		}
+		}
+}
+
+
+function eye(){ // function eye (cursor)
+	image(eye6,mouseX+88,mouseY-41,width/7,height/5);
+}
+
+
+
+class Rain { // RAIN CLASS AND QUALITIES 
+  
+  constructor(x,y,r){ //rain constructor: need x,y,r parameters 
+    this.x=x;
+    this.y=y;
+    this.r=r;
+    this.brightness= 190;
+
+  }
+  
+  exist(){ // calls for the rain moelcules to be drawn(static)
+    
+      noStroke();
+      let a= random(0,255);
+      fill(this.brightness,a); // fill orginal 100 and random alpha (20,225)
+      ellipse(this.x,this.y,this.r); // the rain molecules 
+      
+    }
+
+  fall(){ // this is the movement path of the rain molecules 
+    let w= random(-3,3); 
+    let e= random(9,11);
+    this.x=this.x+w; //x movement random(-10,10)
+    this.y=this.y+e; // y movement --> increases 10 through each loop
+    
+    if(this.x>width){
+      this.x=random(width); // if x becomes greater than the width it has random location set 
+      this.y=0;
+    }
+    if(this.y>height){
+  this.y=0; // if y exceeds the height of page, it starts from 0 
+  this.x=random(width)
+    }
+  }
 }
