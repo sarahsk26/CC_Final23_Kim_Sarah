@@ -14,6 +14,9 @@ let ghostGirl3;
 let daCat;
 let daCat1;
 
+let growth;
+let wired9;
+
 let catLine;
 let treeLine;
 let ghostLine;
@@ -31,17 +34,20 @@ let rains= [];
 let w;
 let h;
 
-let pixelLevel= 7;
+let pixelLevel= 4;
 
 function preload(){ // function preloading--> loading all media items before set up 
 
 //song= loadSound('nightOwlEdit.wav')
 	
 theFont= loadFont('goudyMedieval.ttf');
+	
+growth= loadImage('growth.jpg');
 
 mirrored= loadImage('mirrored.png');
 fye2= loadImage('fye2.png');
 fye= loadImage('fye.png');
+wired9= loadImage('wired9.png');
 	
 tree= loadImage('BladeRunnerTree.png');
 tree1= loadImage('BladeRunnerTree1.png');
@@ -67,17 +73,10 @@ eye6= loadImage('eye6png.png');
 function setup() { 					// SETUP function 
 	createCanvas(windowWidth, windowHeight);
 	imageMode(CENTER);
-
-for(let i=0; i<1000; i++){ // conditions for the rain instance 
-      let x= random(width);
-      let y= random(height);
-      let r= random(3);
-    let rp = new Rain(x,y,r); // creating a new instance of the Rain class
-    rains.push(rp);   
-  }   
 	
 	w= 1;
 	h=1;
+
 	
 }// end of setup function 
 
@@ -98,21 +97,20 @@ function sceneStart(){ // function start scene (first scene)
 let x= windowWidth/2;
 let y= windowHeight/2;
 	
-ww=windowWidth/2;
-hh= windowHeight;
+ww=windowWidth/4;
+hh= windowHeight/2;
 let f = random(-5,5);
 
-let p= random(10,100);
+let p= random(20,200);
 tint(255,p);
 image(ghostLine,x+600,y,ww/3+f,hh/2+f);
 image(catLine,x-700, y, ww/2+f,hh/2+f);
 image(treeLine,x+80,y, ww+f,hh+f);
 	
-	
-tint(255,225);
+
 	
 if (mouseIsPressed === true) { // start of the mouseIsPressed
-tint(255,160);	
+tint(255,200);	
 w= w+ random(-10,15);
 h= h+ random(-10,15);
 
@@ -121,7 +119,7 @@ image(ghostGirl2,x+600,y,w/3,h/2);
 image(daCat1, x-700, y, w/1.7,h/1.9);
 
 	
-	if (w>windowWidth/2){
+	if (w>windowWidth/4){
 textSize(50);  // text size 
   noFill();
   textAlign(CENTER); // text alignmnet in the center
@@ -133,20 +131,28 @@ stroke(255,p); // stroke= white
   text("'release'",x,y/4 );
 		
 }
-	
+
 
 } // end of mouseIsPress
 	
 	imageMode(CENTER);
 	
 	eye();
+	
+	for(let i=0; i<200; i++){ // conditions for the rain instance 
+      let x= random(width);
+      let y= random(height);
+      let r= random(3);
+    let rp = new Rain(x,y,r); // creating a new instance of the Rain class
+    rains.push(rp);   
+  }   
 
 for(var i=0; i<rains.length;i++){ // the rain 
   rains[i].exist(); // the functions of rain
   rains[i].fall();
   }
 
-if (w>windowWidth/2){// if the width of the image exceeds half the width of the window, the next scene is overlayed (sceneCharacters)
+if (w>windowWidth/4){// if the width of the image exceeds half the width of the window, the next scene is overlayed (sceneCharacters)
 sceneCharacters();
 }
 }// end of Start screen 
@@ -154,8 +160,22 @@ sceneCharacters();
 
 
 function sceneCharacters(){ // start of character display scene 
-ww=windowWidth/2;
-hh= windowHeight;
+
+rectMode(CORNER);
+fill(0);
+rect(0,0,windowWidth,windowHeight);
+	
+for(let i=0; i<1000; i++){ // conditions for the rain instance 
+      let x= random(width);
+      let y= random(height);
+      let r= random(3);
+    let rp = new Rain(x,y,r); // creating a new instance of the Rain class
+    rains.push(rp);   
+  }   
+tint(255,200);
+	
+ww=windowWidth/4;
+hh= windowHeight/2;
 	
 let x= windowWidth/2;
 let y= windowHeight/2;
@@ -200,14 +220,14 @@ function sceneCat(){
 pixelDensity(1); 
 	
 	imageMode(CORNER);
-	image(spread,0,0,windowWidth,windowHeight);
+	image(wired9,0,0,windowWidth,windowHeight);
 	
 	imageMode(CENTER);
 	
-let ww= width*3/4+ random(-15,10);
-let hh= height*3/4+random(-15,10);
+let tt= width*2+ random(-5,20);
+let aa= height*2+random(-5,20);
 	
-image(daCat1, 40, windowHeight*3/4,ww, hh );
+image(daCat1, 40, windowHeight*3/4-50,tt, aa );
 
 	for(let i=0; i<1000; i++){ // conditions for the rain instance 
       let x= random(width);
@@ -236,7 +256,17 @@ loadPixels(); // pixelation in the nation
       ellipse(x+o, y+o, pixelLevel);
 		}
 		}
+	
+}
 
+function sceneNext(){
+	
+	fill(255,0,0);
+	
+	
+	rect(0,0,windowWidth, windowHeight);
+	
+	
 }
 
 
@@ -246,7 +276,20 @@ pixelDensity(1);
 	image(fye, 0,0,windowWidth,windowHeight);
 	imageMode(CENTER);
 	
-		image(tree, windowWidth/2+80,windowHeight/2, width/1.2, height/1.2);
+	for(var a=0; a<1400; a+=50){ 
+		let u= random(-15,5);
+		let u_= random(-5,15);
+		let o= random(-40,40);
+	let w_= windowWidth/2+90+a+u;
+let w__= windowWidth/2+90-a+u_;
+		let h_= windowHeight/2+o;
+
+		let y= random(-300,300);
+		
+		image(tree, w_,h_, windowWidth/2+y, windowHeight*2+y);
+		image(tree, w__,h_, windowWidth/2+y, windowHeight*2+y);
+		
+	}
 	
 	loadPixels(); // pixelation in the nation 
 	 	for (let x = 0; x < width; x += pixelLevel) {
@@ -277,9 +320,11 @@ function sceneGhost(){
 	image(mirrored, 0,0,windowWidth,windowHeight);
 	imageMode(CENTER);
 	
-	let o= random(-10,5);
+	let o= random(-5,20);
+	let w_= width/6+o;
+	let h_= height/2+o;
 	
-	image(ghostGirl3, windowWidth/2,windowHeight/2, width/6+o, height/2+o);
+	image(ghostGirl3, windowWidth/2,windowHeight/2, w_, h_);
 	
 	loadPixels(); // pixelation in the nation 
 	 	for (let x = 0; x < width; x += pixelLevel) {
@@ -300,6 +345,13 @@ function sceneGhost(){
     ellipse(x+o, y+o, pixelLevel);
 		}
 		}
+	
+//	if (w_> width/6){
+		
+	//	sceneNext();
+//	}
+	
+	
 }
 
 
