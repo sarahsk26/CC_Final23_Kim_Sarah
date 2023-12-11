@@ -1,6 +1,15 @@
+//references: 
+//https://openprocessing.org/sketch/1373497 --> CodeFromClass on video capture
+// https://openprocessing.org/sketch/1374384 --> CodeFromClass on edge detection 
+
+
 //GLOBAL VARIABLES 
 
+
+//var video;
+
 let mirrored;
+let glimmer;
 
 let tree;
 let tree1; 
@@ -67,12 +76,16 @@ treeLine= loadImage('treeLine.png');
 spread= loadImage('spread.JPG');
 eye1= loadImage('eye1.png');
 eye6= loadImage('eye6png.png');
-	
+glimmer= loadImage('glimmer.jpg');
 }
 
 function setup() { 					// SETUP function 
 	createCanvas(windowWidth, windowHeight);
 	imageMode(CENTER);
+	
+//pixelDensity(1); // reference to CodeFromClass Code on live video capture 
+//  video = createCapture(VIDEO);
+//video.hide();
 	
 	w= 1;
 	h=1;
@@ -86,6 +99,11 @@ function draw() {// start of the draw function
 // song.rate(mouseX/500);
 	//song.play();
 background(0);
+	
+  //image(video, 0, 0, width, height); // move this and manipulate the colors of the pixels 
+// have this video play after sceneCAT, sceneTree, and sceneGhostgirl
+	// make it very blue and pixelated then fade it out to ___ another image (select and image by today)
+
 sceneStart();
 
 }
@@ -93,6 +111,21 @@ sceneStart();
 
 
 function sceneStart(){ // function start scene (first scene)
+
+	textSize(30);  // text size 
+  noFill();
+  textAlign(CENTER); // text alignmnet in the center
+  textFont(theFont);// using the 'theFont' text font
+	
+	let d= random(50,130);	
+stroke(255,d); // 
+  strokeWeight(2); // 
+  text("to exist is to perceive and to sense, forming in coincidence the substances within,",windowWidth/2,windowHeight/4-80 );
+	  text("hold down the eye and you shall see the births of creatures that were meant to be",windowWidth/2,windowHeight/4-40 );
+	
+	
+	
+	
 	
 let x= windowWidth/2;
 let y= windowHeight/2;
@@ -101,7 +134,7 @@ ww=windowWidth/4;
 hh= windowHeight/2;
 let f = random(-5,5);
 
-let p= random(20,200);
+let p= random(20,130);
 tint(255,p);
 image(ghostLine,x+600,y,ww/3+f,hh/2+f);
 image(catLine,x-700, y, ww/2+f,hh/2+f);
@@ -112,7 +145,7 @@ image(treeLine,x+80,y, ww+f,hh+f);
 if (mouseIsPressed === true) { // start of the mouseIsPressed
 tint(255,200);	
 w= w+ random(-10,15);
-h= h+ random(-10,15);
+h= h+ random(-10,14);
 
 image(tree,x+80,y, w,h);
 image(ghostGirl2,x+600,y,w/3,h/2);
@@ -139,7 +172,7 @@ stroke(255,p); // stroke= white
 	
 	eye();
 	
-	for(let i=0; i<200; i++){ // conditions for the rain instance 
+	for(let i=0; i<10; i++){ // conditions for the rain instance 
       let x= random(width);
       let y= random(height);
       let r= random(3);
@@ -185,7 +218,7 @@ image(tree2,x+80,y, ww,hh);
 image(ghostGirl3,x+600,y,ww/3,hh/2);
 
 
-textSize(90);  // text size 
+textSize(50);  // text size 
   noFill();
   textAlign(CENTER); // text alignmnet in the center
   textFont(theFont);// using the 'theFont' text font
@@ -193,10 +226,17 @@ textSize(90);  // text size
 	let p= random(10,120);	
 stroke(255,p); // stroke= white
   strokeWeight(2); // strokeWeight=1
-  text("'1'",x-685,y-300 );
-	text("'2'",x+80,y-300 );
-	text("'3'",x+590,y-300);
-
+  text("'1'",x-685,y-200 );
+	text("'2'",x+50,y-200 );
+	text("'3'",x+590,y-200);
+	
+	textSize(30);
+	
+		let d= random(50,130);	
+stroke(255,d); // 
+  strokeWeight(2); // 
+  text("pick one player, maybe two, maybe three, to share a glimpse of one of their memories",windowWidth/2,windowHeight/4-80 );
+	 
 	
 	
 	
@@ -256,7 +296,6 @@ loadPixels(); // pixelation in the nation
       ellipse(x+o, y+o, pixelLevel);
 		}
 		}
-	
 }
 
 function sceneNext(){
@@ -273,23 +312,31 @@ function sceneNext(){
 function sceneTree(){
 pixelDensity(1); 
 	imageMode(CORNER);
-	image(fye, 0,0,windowWidth,windowHeight);
+	image(glimmer, 0,0,windowWidth,windowHeight);
 	imageMode(CENTER);
 	
-	for(var a=0; a<1400; a+=50){ 
-		let u= random(-15,5);
-		let u_= random(-5,15);
-		let o= random(-40,40);
-	let w_= windowWidth/2+90+a+u;
-let w__= windowWidth/2+90-a+u_;
-		let h_= windowHeight/2+o;
+	//for(var a=0; a<1400; a+=50){ 
+	//	let u= random(-15,5);
+	//	let u_= random(-5,15);
+	//	let o= random(-40,40);
+//	let w_= windowWidth/2+90+a+u;
+//let w__= windowWidth/2+90-a+u_;
+//		let h_= windowHeight/2+o;
 
-		let y= random(-300,300);
+	//	let y= random(-300,300);
 		
-		image(tree, w_,h_, windowWidth/2+y, windowHeight*2+y);
-		image(tree, w__,h_, windowWidth/2+y, windowHeight*2+y);
+	//	image(tree, w_,h_, windowWidth/2+y, windowHeight*2+y);
+	//	image(tree, w__,h_, windowWidth/2+y, windowHeight*2+y);
+	
+	image(tree,windowWidth/3, windowHeight*3/4, width*2, height*2);
+	image(tree,windowWidth*2/3, windowHeight/2-200, width*2.4, height*2);
+	image(tree,windowWidth*5/6, windowHeight/3, width, height*2);
+	image(tree,windowWidth/2-100, windowHeight/3, width*1.3, height*2);
+	image(tree,windowWidth*9/10+100, windowHeight/3, width*3, height*3);
+	image(tree,windowWidth*9/10+250, windowHeight/2, width, height*3.1);
+	
+	
 		
-	}
 	
 	loadPixels(); // pixelation in the nation 
 	 	for (let x = 0; x < width; x += pixelLevel) {
@@ -306,7 +353,7 @@ let w__= windowWidth/2+90-a+u_;
       fill(r, g, b, a);
 			noStroke();
 			
-			let o= random(-13,13);
+			let o= random(-3,3);
       ellipse(x+o, y+o, pixelLevel);
 		}
 		}
