@@ -1,6 +1,8 @@
 //references: 
 //https://openprocessing.org/sketch/1373497 --> CodeFromClass on video capture
 // https://openprocessing.org/sketch/1374384 --> CodeFromClass on edge detection 
+// in-class-code, pixel attraction/manipulation/ movement 
+// 
 
 
 //GLOBAL VARIABLES 
@@ -25,6 +27,7 @@ let daCat1;
 
 let growth;
 let wired9;
+let wired1;
 
 let catLine;
 let treeLine;
@@ -43,7 +46,7 @@ let rains= [];
 let w;
 let h;
 
-let pixelLevel= 4;
+let pixelLevel= 5;
 
 function preload(){ // function preloading--> loading all media items before set up 
 
@@ -57,7 +60,7 @@ mirrored= loadImage('mirrored.png');
 fye2= loadImage('fye2.png');
 fye= loadImage('fye.png');
 wired9= loadImage('wired9.png');
-	
+wired1= loadImage('wired1.png');	
 tree= loadImage('BladeRunnerTree.png');
 tree1= loadImage('BladeRunnerTree1.png');
 tree2= loadImage('BladeRunnerTree2.png');
@@ -82,6 +85,14 @@ glimmer= loadImage('glimmer.jpg');
 function setup() { 					// SETUP function 
 	createCanvas(windowWidth, windowHeight);
 	imageMode(CENTER);
+	
+	for(let i=0; i<200; i++){ // conditions for the rain instance 
+      let x= random(width);
+      let y= random(height);
+      let r= random(3);
+    let rp = new Rain(x,y,r); // creating a new instance of the Rain class
+    rains.push(rp);   
+  }   
 	
 //pixelDensity(1); // reference to CodeFromClass Code on live video capture 
 //  video = createCapture(VIDEO);
@@ -114,14 +125,14 @@ function sceneStart(){ // function start scene (first scene)
 
 	textSize(30);  // text size 
   noFill();
-  textAlign(CENTER); // text alignmnet in the center
+  textAlign(LEFT); // text alignmnet in the center
   textFont(theFont);// using the 'theFont' text font
 	
-	let d= random(50,130);	
+	let d= random(90,130);	
 stroke(255,d); // 
   strokeWeight(2); // 
-  text("to exist is to perceive and to sense, forming in coincidence the substances within,",windowWidth/2,windowHeight/4-80 );
-	  text("hold down the eye and you shall see the births of creatures that were meant to be",windowWidth/2,windowHeight/4-40 );
+  text("to exist is to perceive and to sense, forming in coincidence the substances within,",100,windowHeight/4-80 );
+	  text("hold down the eye and you shall see the births of creatures that were meant to be",windowWidth/2-50,windowHeight/4-20 );
 	
 	
 	
@@ -144,8 +155,8 @@ image(treeLine,x+80,y, ww+f,hh+f);
 	
 if (mouseIsPressed === true) { // start of the mouseIsPressed
 tint(255,200);	
-w= w+ random(-10,15);
-h= h+ random(-10,14);
+w= w+ random(-8,12);
+h= h+ random(-8,12);
 
 image(tree,x+80,y, w,h);
 image(ghostGirl2,x+600,y,w/3,h/2);
@@ -172,13 +183,6 @@ stroke(255,p); // stroke= white
 	
 	eye();
 	
-	for(let i=0; i<10; i++){ // conditions for the rain instance 
-      let x= random(width);
-      let y= random(height);
-      let r= random(3);
-    let rp = new Rain(x,y,r); // creating a new instance of the Rain class
-    rains.push(rp);   
-  }   
 
 for(var i=0; i<rains.length;i++){ // the rain 
   rains[i].exist(); // the functions of rain
@@ -235,7 +239,7 @@ stroke(255,p); // stroke= white
 		let d= random(50,130);	
 stroke(255,d); // 
   strokeWeight(2); // 
-  text("pick one player, maybe two, maybe three, to share a glimpse of one of their memories",windowWidth/2,windowHeight/4-80 );
+  text("pick a figure, maybe two, maybe three, to share a glimpse of their memories",windowWidth/2,windowHeight/4-80 );
 	 
 	
 	
@@ -260,7 +264,13 @@ function sceneCat(){
 pixelDensity(1); 
 	
 	imageMode(CORNER);
+	
+	if(mouseX<windowWidth/2){
 	image(wired9,0,0,windowWidth,windowHeight);
+	}
+	else if (mouseX>windowWidth/2){
+	image(wired1,0,0,windowWidth,windowHeight);
+	}
 	
 	imageMode(CENTER);
 	
@@ -312,6 +322,7 @@ function sceneNext(){
 function sceneTree(){
 pixelDensity(1); 
 	imageMode(CORNER);
+	
 	image(glimmer, 0,0,windowWidth,windowHeight);
 	imageMode(CENTER);
 	
@@ -329,11 +340,11 @@ pixelDensity(1);
 	//	image(tree, w__,h_, windowWidth/2+y, windowHeight*2+y);
 	
 	image(tree,windowWidth/3, windowHeight*3/4, width*2, height*2);
-	image(tree,windowWidth*2/3, windowHeight/2-200, width*2.4, height*2);
+	image(tree1,windowWidth*2/3, windowHeight/2-200, width*2.4, height*2);
 	image(tree,windowWidth*5/6, windowHeight/3, width, height*2);
-	image(tree,windowWidth/2-100, windowHeight/3, width*1.3, height*2);
+	image(tree2,windowWidth/2-100, windowHeight/3, width*1.3, height*2);
 	image(tree,windowWidth*9/10+100, windowHeight/3, width*3, height*3);
-	image(tree,windowWidth*9/10+250, windowHeight/2, width, height*3.1);
+	image(tree3,windowWidth*9/10+250, windowHeight/2, width, height*3.1);
 	
 	
 		
