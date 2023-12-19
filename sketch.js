@@ -9,10 +9,23 @@
 
 
 //var video;
+let inside;
+let birdsFly;
+let shelter;
+let cycles;
+let ground; 
+let train;
 
+let memories; 
+let timeline;
+let alley;
 let mirrored;
 let glimmer;
-
+let copper;
+let copperInverted;
+let aforest; 
+let growth;
+let dead;
 let tree;
 let tree1; 
 let tree2;
@@ -24,8 +37,7 @@ let ghostGirl2;
 let ghostGirl3;
 let daCat;
 let daCat1;
-
-let growth;
+let building;
 let wired9;
 let wired1;
 
@@ -52,10 +64,22 @@ function preload(){ // function preloading--> loading all media items before set
 
 //song= loadSound('nightOwlEdit.wav')
 	
-theFont= loadFont('goudyMedieval.ttf');
-	
-growth= loadImage('growth.jpg');
 
+	
+theFont= loadFont('goudyMedieval.ttf');
+birdsFly= loadImage('birdsFly.JPG');
+shelter= loadImage('shelter.JPG');
+cycles= loadImage('cycles.JPG');
+ground= loadImage('ground.jpg');
+train= loadImage('train.JPG');
+	
+building= loadImage('building.JPG');
+memories= loadImage('memories.jpg');
+timeline= loadImage('timeline.png');
+copper= loadImage('copper.png');
+dead= loadImage('dead.JPG');
+growth= loadImage('growth.png');
+copperInverted= loadImage('copperInverted.png')
 mirrored= loadImage('mirrored.png');
 fye2= loadImage('fye2.png');
 fye= loadImage('fye.png');
@@ -70,11 +94,12 @@ ghostGirl2= loadImage('ghostGirl2.png');
 ghostGirl3= loadImage('ghostGirl3.png');
 daCat= loadImage('daCAT.png');
 daCat1= loadImage('daCAT1.png');
+alley= loadImage('alley.JPG');
 
 ghostLine= loadImage('ghostLine.png');
 catLine= loadImage('catLine.png');
 treeLine= loadImage('treeLine.png');
-
+aforest= loadImage('aforest.png');
 
 spread= loadImage('spread.JPG');
 eye1= loadImage('eye1.png');
@@ -124,18 +149,19 @@ sceneStart();
 function sceneStart(){ // function start scene (first scene)
 
 	textSize(30);  // text size 
-  noFill();
+  noStroke();
   textAlign(LEFT); // text alignmnet in the center
   textFont(theFont);// using the 'theFont' text font
 	
 	let d= random(90,130);	
-stroke(255,d); // 
-  strokeWeight(2); // 
-  text("to exist is to perceive and to sense, forming in coincidence the substances within,",100,windowHeight/4-80 );
-	  text("hold down the eye and you shall see the births of creatures that were meant to be",windowWidth/2-50,windowHeight/4-20 );
-	
-	
-	
+fill(255,d);
+  text("to exist is to perceive and to sense,",100,windowHeight/4-200 );
+	text("forming in coincidence the substances within", 300, windowHeight/4-150);
+	strokeWeight(1);
+	stroke(180,120);
+	  text("hold down the eye and you shall see",500,windowHeight/4-100);
+	noStroke();
+	text("the births of creatures that were meant to be", 700, windowHeight/4-50);
 	
 	
 let x= windowWidth/2;
@@ -147,20 +173,18 @@ let f = random(-5,5);
 
 let p= random(20,130);
 tint(255,p);
-image(ghostLine,x+600,y,ww/3+f,hh/2+f);
-image(catLine,x-700, y, ww/2+f,hh/2+f);
-image(treeLine,x+80,y, ww+f,hh+f);
-	
-
+image(ghostLine,x+600,y-20,ww/3+f,hh/2+f);
+image(catLine,x-700, y-60, ww/2+f,hh/2+f);
+image(treeLine,x+80,y-20, ww+f,hh+f);
 	
 if (mouseIsPressed === true) { // start of the mouseIsPressed
 tint(255,200);	
-w= w+ random(-8,12);
-h= h+ random(-8,12);
+w= w+ random(-3,9);
+h= h+ random(-3,9);
 
-image(tree,x+80,y, w,h);
-image(ghostGirl2,x+600,y,w/3,h/2);
-image(daCat1, x-700, y, w/1.7,h/1.9);
+image(tree,x+80,y-20, w,h);
+image(ghostGirl2,x+600,y-20,w/3,h/2);
+image(daCat1, x-700, y-60, w/1.7,h/1.9);
 
 	
 	if (w>windowWidth/4){
@@ -170,8 +194,7 @@ textSize(50);  // text size
   textFont(theFont);// using the 'theFont' text font
 	
 	let p= random(10,120);	
-stroke(255,p); // stroke= white
-  strokeWeight(1); // strokeWeight=1
+fill(255,d);
   text("'release'",x,y/4 );
 		
 }
@@ -217,36 +240,32 @@ hh= windowHeight/2;
 let x= windowWidth/2;
 let y= windowHeight/2;
 
-image(daCat1, x-700, y, ww/2,hh/2);
-image(tree2,x+80,y, ww,hh);
-image(ghostGirl3,x+600,y,ww/3,hh/2);
+image(daCat1, x-700, y-20, ww/2,hh/2);
+image(tree2,x+80,y-60, ww,hh);
+image(ghostGirl3,x+600,y-20,ww/3,hh/2);
 
 
-textSize(50);  // text size 
-  noFill();
-  textAlign(CENTER); // text alignmnet in the center
-  textFont(theFont);// using the 'theFont' text font
+textSize(30);  // text size 
 	
-	let p= random(10,120);	
-stroke(255,p); // stroke= white
-  strokeWeight(2); // strokeWeight=1
-  text("'1'",x-685,y-200 );
-	text("'2'",x+50,y-200 );
-	text("'3'",x+590,y-200);
+ textAlign(CENTER);	
+	let p= random(40,150);
+	fill(240,p);
+  text("'1'",x-685,y-300 );
+	text("'2'",x+50,y-300 );
+	text("'3'",x+590,y-300);
 	
 	textSize(30);
-	
+textAlign(LEFT);
 		let d= random(50,130);	
-stroke(255,d); // 
-  strokeWeight(2); // 
-  text("pick a figure, maybe two, maybe three, to share a glimpse of their memories",windowWidth/2,windowHeight/4-80 );
-	 
+fill(255,d);
+  text("pick a figure, maybe two, maybe three, to share a glimpse of their memories",700,windowHeight*4/5+20);
 	
 	
 	
 eye();
 	
 if (key === '1'){
+	
 	sceneCat();
 	
 }
@@ -265,27 +284,27 @@ pixelDensity(1);
 	
 	imageMode(CORNER);
 	
-	if(mouseX<windowWidth/2){
+	if(mouseX<windowWidth/6){
 	image(wired9,0,0,windowWidth,windowHeight);
 	}
-	else if (mouseX>windowWidth/2){
+	else if (mouseX>windowWidth/6 && mouseX<windowWidth*2/6){
 	image(wired1,0,0,windowWidth,windowHeight);
+	} 
+	else if (mouseX>windowWidth*2/6 && mouseX<windowWidth*3/6){
+		
+	image(building, 0,0, windowWidth, windowHeight);
+	}
+	else if (mouseX>windowWidth*3/6 && mouseX<windowWidth*4/6 ){
+		image(alley,0,0,windowWidth,windowHeight);
+	}
+else if (mouseX>windowWidth*4/6 && mouseX<windowWidth*5/6){
+	
+image(fye,0,0,windowWidth,windowHeight);
+}
+	else if (mouseX> windowWidth*5/6){
+		image(fye2,0,0, windowWidth, windowHeight);
 	}
 	
-	imageMode(CENTER);
-	
-let tt= width*2+ random(-5,20);
-let aa= height*2+random(-5,20);
-	
-image(daCat1, 40, windowHeight*3/4-50,tt, aa );
-
-	for(let i=0; i<1000; i++){ // conditions for the rain instance 
-      let x= random(width);
-      let y= random(height);
-      let r= random(3);
-    let rp = new Rain(x,y,r); // creating a new instance of the Rain class
-    rains.push(rp);   
-  } 
 	
 loadPixels(); // pixelation in the nation 
 	 	for (let x = 0; x < width; x += pixelLevel) {
@@ -306,16 +325,61 @@ loadPixels(); // pixelation in the nation
       ellipse(x+o, y+o, pixelLevel);
 		}
 		}
+	
+		
+rectMode(CORNER);
+	strokeWeight(1);
+	fill(20,180);
+	stroke(0,225);
+	rect(20,18,100,40);
+textSize(40);
+	noStroke();
+	fill(255);
+		text("'esc'", 40, 50);
+
+	
+	imageMode(CENTER);
+	
+let tt= width/3+ random(-5,5);
+let aa= height/3+random(-5,5);
+	
+	let a = random(180,230);
+	
+if(mouseY>windowHeight*9/10-150){
+		let n= random(220,255);
+		tint(255,n);
+	}else {
+		let s= random(160,190);
+		tint(255,s);
+	}
+	
+	
+	
+	rectMode(CORNERS);
+	fill(20,180);
+	stroke(0,225);
+	rect(0,windowHeight*7/8-15, windowWidth, windowHeight);
+
+
+		fill(255);
+	noStroke();
+	rect(0,windowHeight*9/10,windowWidth, windowHeight*9/10+2);
+	rect(windowWidth/6-150, windowHeight*9/10-40, windowWidth/6-148, windowHeight*9/10);
+	rect(windowWidth*2/6-150, windowHeight*9/10-40, windowWidth*2/6-148, windowHeight*9/10);
+		rect(windowWidth/2-150, windowHeight*9/10-40, windowWidth/2-148, windowHeight*9/10);
+		rect(windowWidth*4/6-150, windowHeight*9/10-40, windowWidth*4/6-148, windowHeight*9/10);
+		rect(windowWidth*5/6-150, windowHeight*9/10-40, windowWidth*5/6-148, windowHeight*9/10);
+	rect(windowWidth-150, windowHeight*9/10-40, windowWidth-148, windowHeight*9/10);
+	text("timeline", windowWidth/2-100, windowHeight*9/10+60);
+	
+	image(daCat1, mouseX-200,mouseY,tt, aa );
+	
+
 }
 
 function sceneNext(){
-	
-	fill(255,0,0);
-	
-	
-	rect(0,0,windowWidth, windowHeight);
-	
-	
+		fill(255,0,0);	
+	rect(0,0,windowWidth, windowHeight);		
 }
 
 
@@ -323,31 +387,29 @@ function sceneTree(){
 pixelDensity(1); 
 	imageMode(CORNER);
 	
-	image(glimmer, 0,0,windowWidth,windowHeight);
-	imageMode(CENTER);
+	//image(glimmer, 0,0,windowWidth,windowHeight);
 	
-	//for(var a=0; a<1400; a+=50){ 
-	//	let u= random(-15,5);
-	//	let u_= random(-5,15);
-	//	let o= random(-40,40);
-//	let w_= windowWidth/2+90+a+u;
-//let w__= windowWidth/2+90-a+u_;
-//		let h_= windowHeight/2+o;
-
-	//	let y= random(-300,300);
+			if(mouseX<windowWidth/6){
+	image(ground,0,0,windowWidth,windowHeight);
+	}
+	else if (mouseX>windowWidth/6 && mouseX<windowWidth*2/6){
+	image(birdsFly,0,0,windowWidth,windowHeight);
+	} 
+	else if (mouseX>windowWidth*2/6 && mouseX<windowWidth*3/6){
 		
-	//	image(tree, w_,h_, windowWidth/2+y, windowHeight*2+y);
-	//	image(tree, w__,h_, windowWidth/2+y, windowHeight*2+y);
+	image(cycles, 0,0, windowWidth, windowHeight);
+	}
+	else if (mouseX>windowWidth*3/6 && mouseX<windowWidth*4/6 ){
+		image(shelter,0,0,windowWidth,windowHeight);
+	}
+else if (mouseX>windowWidth*4/6 && mouseX<windowWidth*5/6){
 	
-	image(tree,windowWidth/3, windowHeight*3/4, width*2, height*2);
-	image(tree1,windowWidth*2/3, windowHeight/2-200, width*2.4, height*2);
-	image(tree,windowWidth*5/6, windowHeight/3, width, height*2);
-	image(tree2,windowWidth/2-100, windowHeight/3, width*1.3, height*2);
-	image(tree,windowWidth*9/10+100, windowHeight/3, width*3, height*3);
-	image(tree3,windowWidth*9/10+250, windowHeight/2, width, height*3.1);
+image(train,0,0,windowWidth,windowHeight);
+}
+	else if (mouseX> windowWidth*5/6){
+		image(wired1,0,0, windowWidth, windowHeight);
+	}
 	
-	
-		
 	
 	loadPixels(); // pixelation in the nation 
 	 	for (let x = 0; x < width; x += pixelLevel) {
@@ -369,20 +431,81 @@ pixelDensity(1);
 		}
 		}
 	
+	
+rectMode(CORNER);
+	fill(20,180);
+	stroke(0,225);
+	rect(20,18,100,40);
+textSize(40);
+	noStroke();
+	fill(255);
+		text("'esc'", 40, 50);
+	
+	
+		let n= random(220,255);
+		tint(255,n);
+
+	fill(20,180);
+	stroke(0,225);
+	rect(0,windowHeight*7/8-15, windowWidth, windowHeight);
+	
+	
+		rectMode(CORNERS);
+		fill(255);
+	noStroke();
+	rect(0,windowHeight*9/10,windowWidth, windowHeight*9/10+2);
+	rect(windowWidth/6-150, windowHeight*9/10-40, windowWidth/6-148, windowHeight*9/10);
+	rect(windowWidth*2/6-150, windowHeight*9/10-40, windowWidth*2/6-148, windowHeight*9/10);
+		rect(windowWidth/2-150, windowHeight*9/10-40, windowWidth/2-148, windowHeight*9/10);
+		rect(windowWidth*4/6-150, windowHeight*9/10-40, windowWidth*4/6-148, windowHeight*9/10);
+		rect(windowWidth*5/6-150, windowHeight*9/10-40, windowWidth*5/6-148, windowHeight*9/10);
+	rect(windowWidth-150, windowHeight*9/10-40, windowWidth-148, windowHeight*9/10);
+	text("timeline", windowWidth/2-100, windowHeight*9/10+60);
+	
+	imageMode(CENTER);
+	image(tree,mouseX+80, mouseY-330, width/2, height);
+	
+		
 }
+
+
+
 
 
 function sceneGhost(){
 	pixelDensity(1); 
 	imageMode(CORNER);
-	image(mirrored, 0,0,windowWidth,windowHeight);
+//	image(mirrored, 0,0,windowWidth,windowHeight);
+	
+		if(mouseX<windowWidth/6){
+	image(mirrored,0,0,windowWidth,windowHeight);
+	}
+	else if (mouseX>windowWidth/6 && mouseX<windowWidth*2/6){
+	image(glimmer,0,0,windowWidth,windowHeight);
+	} 
+	else if (mouseX>windowWidth*2/6 && mouseX<windowWidth*3/6){
+		
+	image(memories, 0,0, windowWidth, windowHeight);
+	}
+	else if (mouseX>windowWidth*3/6 && mouseX<windowWidth*4/6 ){
+		image(dead,0,0,windowWidth,windowHeight);
+	}
+else if (mouseX>windowWidth*4/6 && mouseX<windowWidth*5/6){
+	
+image(aforest,0,0,windowWidth,windowHeight);
+}
+	else if (mouseX> windowWidth*5/6){
+		image(copper,0,0, windowWidth, windowHeight);
+	}
+
+	
 	imageMode(CENTER);
 	
-	let o= random(-5,20);
-	let w_= width/6+o;
-	let h_= height/2+o;
-	
-	image(ghostGirl3, windowWidth/2,windowHeight/2, w_, h_);
+	let o= random(-5,5);
+	let w_= width/8+o;
+	let h_= height/4+o;
+
+
 	
 	loadPixels(); // pixelation in the nation 
 	 	for (let x = 0; x < width; x += pixelLevel) {
@@ -398,17 +521,53 @@ function sceneGhost(){
 
       fill(r, g, b, a);
 			noStroke();
-			
+		
+		
 			let o= random(-3,3);
     ellipse(x+o, y+o, pixelLevel);
+			
+	
 		}
 		}
 	
-//	if (w_> width/6){
 		
-	//	sceneNext();
-//	}
+rectMode(CORNER);
+	fill(20,180);
+	stroke(0,225);
+	rect(20,18,100,40);
+textSize(40);
+	noStroke();
+	fill(255);
+		text("'esc'", 40, 50);
 	
+	
+	
+	if(mouseY>windowHeight*9/10-150){
+		let n= random(220,255);
+		tint(255,n);
+	}else {
+		let s= random(160,190);
+		tint(255,s);
+	}
+	
+	rectMode(CORNERS);
+	fill(20,180);
+	stroke(0,225);
+	rect(0,windowHeight*7/8-15, windowWidth, windowHeight);
+
+	rectMode(CORNERS);
+		fill(255);
+	noStroke();
+	rect(0,windowHeight*9/10,windowWidth, windowHeight*9/10+2);
+	rect(windowWidth/6-150, windowHeight*9/10-40, windowWidth/6-148, windowHeight*9/10);
+	rect(windowWidth*2/6-150, windowHeight*9/10-40, windowWidth*2/6-148, windowHeight*9/10);
+		rect(windowWidth/2-150, windowHeight*9/10-40, windowWidth/2-148, windowHeight*9/10);
+		rect(windowWidth*4/6-150, windowHeight*9/10-40, windowWidth*4/6-148, windowHeight*9/10);
+		rect(windowWidth*5/6-150, windowHeight*9/10-40, windowWidth*5/6-148, windowHeight*9/10);
+	rect(windowWidth-150, windowHeight*9/10-40, windowWidth-148, windowHeight*9/10);
+	text("timeline", windowWidth/2-100, windowHeight*9/10+60);
+
+	image(ghostGirl, mouseX,mouseY, w_, h_);
 	
 }
 
